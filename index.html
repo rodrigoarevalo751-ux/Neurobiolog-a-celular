@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeuroLab · La neurona y la transmisión del impulso nervioso</title>
+<meta name="description" content="NeuroLab: sitio de divulgación científica sobre neurobiología celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<canvas id="bgNet" aria-hidden="true"></canvas>
+<div class="shell">
+
+<!-- ============ BARRA LATERAL ============ -->
+<aside class="rail">
+  <button class="brand" data-view="inicio"><strong>NeuroLab</strong><small>Neurobiología celular</small></button>
+  <nav class="main-menu" aria-label="Navegación principal">
+    <button class="active" data-view="inicio">Inicio</button>
+    <button data-view="explorar">Explorar</button>
+    <button data-view="laboratorio">Laboratorio</button>
+    <button data-view="juego">Juego</button>
+    <button data-view="evaluacion">Evaluación</button>
+    <button data-view="glosario">Glosario</button>
+  </nav>
+  <div class="rail-foot">
+    <button id="themeBtn" class="theme-btn" aria-label="Cambiar tema">Tema claro</button>
+    <p>Expo-Sistemas<br>Primer Año de Bachillerato</p>
+  </div>
+</aside>
+
+<div class="content">
+<main id="app">
+
+<!-- ============ INICIO ============ -->
+<section id="inicio" class="view active-view">
+  <p class="meta">Expo-Sistemas, Grupo 1: sistema nervioso central y periférico</p>
+  <h1>La neurona y la transmisión del impulso nervioso</h1>
+  <p class="lead">Las neuronas reciben información, generan impulsos eléctricos y se comunican entre ellas mediante sinapsis. Este sitio recorre esa secuencia desde la estructura celular hasta la señal química.</p>
+  <div class="row">
+    <button class="btn primary" data-view="explorar">Explorar la neurona</button>
+    <button class="btn secondary" data-view="juego">Construir una neurona</button>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 800 300" role="img" aria-label="Neurona con dendritas, soma, axón mielinizado y terminales">
+      <g class="glow">
+        <path d="M150 130 L60 60"/><path d="M150 140 L40 130"/><path d="M150 160 L50 215"/>
+        <path d="M160 175 L100 260"/><path d="M150 120 L100 30"/>
+        <path d="M280 150 L640 150"/>
+        <path d="M640 150 L720 90"/><path d="M640 150 L735 150"/><path d="M640 150 L720 215"/>
+      </g>
+      <circle cx="210" cy="150" r="65" class="h-soma"/>
+      <circle cx="210" cy="150" r="25" class="h-nuc"/>
+      <g class="h-my">
+        <rect x="320" y="136" width="60" height="28" rx="14"/><rect x="400" y="136" width="60" height="28" rx="14"/>
+        <rect x="480" y="136" width="60" height="28" rx="14"/><rect x="560" y="136" width="55" height="28" rx="14"/>
+      </g>
+      <g class="h-dot"><circle cx="722" cy="90" r="9"/><circle cx="737" cy="150" r="9"/><circle cx="722" cy="215" r="9"/></g>
+      <circle r="8" class="impulse">
+        <animateMotion dur="3.2s" repeatCount="indefinite" path="M280 150 L640 150" keyPoints="0;1" keyTimes="0;1" calcMode="linear"/>
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.9;1" dur="3.2s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    <figcaption>Figura 1. Neurona multipolar. El punto naranja representa un potencial de acción viajando por el axón hacia los terminales.</figcaption>
+  </figure>
+
+  <figure class="viz3d">
+    <div id="neuro3d" role="img" tabindex="0" aria-label="Red neuronal tridimensional interactiva. Arrastra para girarla o usa las flechas del teclado."></div>
+    <figcaption>Figura 1B. Red neuronal en 3D. Arrastra para girarla; los destellos representan impulsos viajando entre neuronas.</figcaption>
+  </figure>
+
+  <div class="two">
+    <div>
+      <h2>Resumen</h2>
+      <p>La neurona es la unidad estructural y funcional del sistema nervioso. Las dendritas captan señales, el soma las integra y, si se alcanza el umbral, el axón conduce un potencial de acción hasta los terminales, donde se liberan neurotransmisores.</p>
+      <p>El sitio incluye una exploración de la anatomía neuronal, simulaciones de potencial de acción y sinapsis, un juego de construcción, una evaluación digital y un glosario.</p>
+    </div>
+    <div>
+      <h2>Comité de divulgación científica</h2>
+      <ul class="committee">
+        <li>Fabrizzio Enrique Leiva Alvarenga</li>
+        <li>Rodrigo Alberto Cortez Arévalo</li>
+        <li>Jostin Anderson López Villalta</li>
+        <li>Gustavo Adolfo López Canales</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Contenido del sitio</h2>
+  <ol class="toc">
+    <li><button data-view="explorar"><span>Explorar</span><em>Partes de la neurona y medidas de autocuidado</em></button></li>
+    <li><button data-view="laboratorio"><span>Laboratorio</span><em>Potencial de acción, sinapsis y neurotransmisores</em></button></li>
+    <li><button data-view="juego"><span>Juego</span><em>Construye la neurona arrastrando sus partes</em></button></li>
+    <li><button data-view="evaluacion"><span>Evaluación</span><em>Cuestionario digital con calificación</em></button></li>
+    <li><button data-view="glosario"><span>Glosario</span><em>Términos esenciales de neurobiología</em></button></li>
+  </ol>
+</section>
+
+<!-- ============ EXPLORAR ============ -->
+<section id="explorar" class="view">
+  <div class="head">
+    <h2>Anatomía de la neurona</h2>
+    <p>Selecciona cada estructura de la figura para conocer su función.</p>
+  </div>
+
+  <div class="explorer">
+    <figure>
+      <svg viewBox="0 0 800 300">
+        <g class="part" data-part="dendritas" tabindex="0">
+          <path d="M150 130 L60 60 M150 140 L40 130 M150 160 L50 215 M160 175 L100 260 M150 120 L100 30" class="line"/>
+          <circle cx="60" cy="60" r="6"/><circle cx="40" cy="130" r="6"/><circle cx="50" cy="215" r="6"/>
+          <circle cx="100" cy="260" r="6"/><circle cx="100" cy="30" r="6"/>
+        </g>
+        <g class="part" data-part="soma" tabindex="0"><circle cx="210" cy="150" r="70" class="soma"/></g>
+        <g class="part" data-part="nucleo" tabindex="0"><circle cx="210" cy="150" r="26" class="nuc"/></g>
+        <g class="part" data-part="axon" tabindex="0"><path d="M280 150 L640 150" class="line thick"/></g>
+        <g class="part" data-part="mielina" tabindex="0">
+          <rect x="320" y="136" width="60" height="28" rx="14" class="myel"/><rect x="400" y="136" width="60" height="28" rx="14" class="myel"/>
+          <rect x="480" y="136" width="60" height="28" rx="14" class="myel"/><rect x="560" y="136" width="55" height="28" rx="14" class="myel"/>
+        </g>
+        <g class="part" data-part="terminales" tabindex="0">
+          <path d="M640 150 L720 90 M640 150 L735 150 M640 150 L720 215" class="line"/>
+          <circle cx="722" cy="90" r="9"/><circle cx="737" cy="150" r="9"/><circle cx="722" cy="215" r="9"/>
+        </g>
+      </svg>
+      <figcaption>Figura 2. Estructuras de la neurona (esquema interactivo).</figcaption>
+    </figure>
+    <article id="partInfo" class="info" aria-live="polite"></article>
+  </div>
+
+  <div class="cols3" style="margin-top:3rem">
+    <div><h3>¿Qué es una neurona?</h3><p>Unidad funcional del sistema nervioso. Recibe señales, las procesa y transmite información a otras neuronas, músculos o glándulas.</p></div>
+    <div><h3>Tipos funcionales</h3><p>Sensitivas (llevan información al sistema nervioso central), motoras (llevan órdenes a los efectores) e interneuronas (conectan neuronas entre sí).</p></div>
+    <div><h3>Neurobiología celular</h3><p>Estudia los mecanismos celulares y moleculares que permiten la comunicación neuronal: canales iónicos, potenciales y sinapsis.</p></div>
+  </div>
+
+  <div class="care">
+    <h2>Medidas de autocuidado</h2>
+    <div>
+      <div>
+        <h3>Higiene del sueño</h3>
+        <p>Durante el sueño se consolida la memoria y se restablece la actividad sináptica. Dormir poco afecta la atención y el aprendizaje.</p>
+        <ul>
+          <li>Dormir entre 8 y 10 horas en la adolescencia.</li>
+          <li>Mantener horarios regulares de acostarse y levantarse.</li>
+          <li>Evitar pantallas, cafeína y bebidas energéticas antes de dormir.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Efectos de las sustancias adictivas</h3>
+        <p>Muchas drogas elevan la dopamina en el circuito de recompensa. El uso repetido provoca tolerancia y dependencia, y el alcohol potencia la acción inhibidora del GABA.</p>
+        <ul>
+          <li>La corteza prefrontal madura hasta cerca de los 25 años, por eso el consumo temprano es más riesgoso.</li>
+          <li>Ante un consumo problemático, buscar ayuda profesional.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LABORATORIO ============ -->
+<section id="laboratorio" class="view">
+  <div class="head">
+    <h2>Laboratorio virtual</h2>
+    <p>Observa cómo una neurona genera y transmite información.</p>
+  </div>
+
+  <div class="plate">
+    <header><h3>Potencial de acción</h3><p>Ajusta el estímulo y observa si la neurona alcanza el umbral.</p></header>
+    <div class="lab-content">
+      <canvas id="apCanvas" width="720" height="280"></canvas>
+      <div class="controls">
+        <label for="stim">Intensidad del estímulo: <output id="stimOut">−60 mV</output></label>
+        <input type="range" id="stim" min="-70" max="-40" value="-60" step="1">
+        <button id="fireBtn" class="btn primary">Estimular neurona</button>
+        <p id="apMsg" class="status" aria-live="polite">Ajusta el estímulo y presiona el botón.</p>
+      </div>
+    </div>
+    <ol class="phases">
+      <li><b>1</b><span>Despolarización</span><small>Entra Na⁺</small></li>
+      <li><b>2</b><span>Repolarización</span><small>Sale K⁺</small></li>
+      <li><b>3</b><span>Hiperpolarización</span><small>Periodo refractario</small></li>
+      <li><b>4</b><span>Recuperación</span><small>Bomba Na⁺/K⁺</small></li>
+    </ol>
+  </div>
+
+  <div class="plate">
+    <header><h3>Sinapsis química</h3><p>Sigue paso a paso el recorrido del mensaje entre dos neuronas.</p></header>
+    <button class="btn primary" id="synBtn">Ver siguiente paso</button>
+    <svg viewBox="0 0 700 220" id="synSvg">
+      <path d="M0 20 H700 V90 Q350 110 0 90Z" class="pre"/>
+      <path d="M0 200 H700 V135 Q350 115 0 135Z" class="post"/>
+      <g id="vesicles"><circle cx="200" cy="70" r="12"/><circle cx="300" cy="75" r="12"/><circle cx="400" cy="75" r="12"/><circle cx="500" cy="70" r="12"/></g>
+      <g id="nts"></g>
+      <g id="receptors"><rect x="190" y="132" width="26" height="14" rx="4"/><rect x="290" y="132" width="26" height="14" rx="4"/><rect x="390" y="132" width="26" height="14" rx="4"/><rect x="490" y="132" width="26" height="14" rx="4"/></g>
+    </svg>
+    <div id="synText" class="info" aria-live="polite"></div>
+  </div>
+
+  <div class="plate">
+    <header><h3>Neurotransmisores</h3></header>
+    <div class="tabs" id="ntTabs"></div>
+    <div id="ntPanel"></div>
+  </div>
+</section>
+
+<!-- ============ JUEGO ============ -->
+<section id="juego" class="view">
+  <div class="head">
+    <h2>Construye la neurona</h2>
+    <p>Arrastra cada pieza hasta su lugar en la neurona incompleta. En pantallas táctiles también puedes tocar la pieza y luego tocar el lugar.</p>
+  </div>
+
+  <div class="hud">
+    <div><span>Puntuación</span><strong id="gScore">0</strong></div>
+    <div><span>Piezas colocadas</span><strong id="gPlaced">0 / 6</strong></div>
+    <div><span>Intentos fallidos</span><strong id="gFails">0</strong></div>
+  </div>
+
+  <div id="gameBoardWrap"><svg id="gameBoard" viewBox="0 0 800 300" role="img" aria-label="Neurona incompleta"></svg></div>
+  <p id="gMsg" class="gmsg" aria-live="polite"></p>
+  <div id="gameTray" class="tray"></div>
+  <article id="gInfo" class="info" hidden></article>
+
+  <div id="gameEnd" class="end" hidden>
+    <div class="end-box" role="dialog" aria-modal="true" aria-labelledby="endTitle">
+      <h3 id="endTitle">Neurona completa. Felicitaciones.</h3>
+      <p>Puntuación final: <strong id="finalScore">0</strong> puntos, con <strong id="finalFails">0</strong> intentos fallidos.</p>
+      <p>Una neurona funciona así: las dendritas y el soma reciben e integran señales; si se supera el umbral, se genera un potencial de acción en el segmento inicial del axón. La vaina de mielina acelera su conducción hasta los terminales, donde se liberan neurotransmisores que comunican a la neurona con la siguiente célula.</p>
+      <button class="btn primary" id="restartGame">Jugar de nuevo</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVALUACIÓN ============ -->
+<section id="evaluacion" class="view">
+  <div class="head">
+    <h2>Evaluación</h2>
+    <p>Responde el cuestionario. Al enviarlo podrás ver tu calificación.</p>
+  </div>
+
+  <div class="form-wrap">
+    <!-- Pega aquí el enlace de incrustación de Google Forms en data-src (ver instrucciones debajo) -->
+    <iframe id="formFrame" title="Cuestionario de evaluación" loading="lazy" data-src="https://docs.google.com/forms/d/e/1FAIpQLSeZX6gqwTf6n0t_78NGSeR_e9mcyLsPTuiNBKutQ1UpzoFmIA/viewform?usp=header" hidden>Cargando…</iframe>
+    <div id="formNotice">
+      <h3>Falta conectar el formulario</h3>
+      <ol>
+        <li>En Google Forms, abre tu cuestionario y pulsa Enviar, luego la pestaña de código incrustado (&lt;&gt;).</li>
+        <li>Copia solo la dirección que aparece dentro de src="…" (empieza con https://docs.google.com/forms/).</li>
+        <li>Pégala en index.html, en el atributo data-src del elemento con id formFrame.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GLOSARIO ============ -->
+<section id="glosario" class="view">
+  <div class="head">
+    <h2>Glosario</h2>
+    <p>Busca conceptos esenciales de neurobiología.</p>
+  </div>
+  <label class="search"><span class="sr" hidden>Buscar</span><input id="glossarySearch" type="search" placeholder="Buscar concepto"></label>
+  <dl id="glossaryGrid" class="glossary"></dl>
+</section>
+
+</main>
+<footer class="foot">NeuroLab. Expo-Sistemas, Primer Año de Bachillerato, Neurobiología Celular.</footer>
+</div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="js/script.js"></script>
+<script src="js/effects.js" defer></script>
+</body>
+</html>

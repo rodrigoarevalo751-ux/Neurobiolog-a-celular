@@ -1,0 +1,309 @@
+/* NeuroLab · estilos. Misma paleta; estructura nueva: barra lateral + páginas tipo monografía */
+:root{
+  --bg:#070b14;--card:#111b2d;--card2:#162238;--ink:#edf3ff;--muted:#9ba9c2;
+  --cyan:#4fd1ff;--blue:#557cff;--purple:#9b7cff;--orange:#ffb347;--green:#67e8a5;--red:#ff7070;
+  --line:#ffffff1f;--grid:#ffffff08;--soma:#16365e;--post:#3a2a6b;--rail:250px;
+  --serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',system-ui,sans-serif;
+}
+[data-theme="light"]{
+  --bg:#f2f5fa;--card:#ffffff;--card2:#eef3fa;--ink:#182033;--muted:#59657a;
+  --cyan:#087da8;--blue:#4564db;--purple:#7655d8;--orange:#c46a08;--green:#168c59;--red:#c43d3d;
+  --line:#18203329;--grid:#1820330a;--soma:#cfe0f5;--post:#d9d0f3;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.65 var(--sans);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:36px 36px}
+button,input{font:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);line-height:1.2;margin:0 0 .6rem}
+h1{font-size:clamp(2.2rem,4.6vw,3.7rem);font-weight:700;letter-spacing:-.02em;max-width:18ch}
+h2{font-size:1.7rem;font-weight:600}
+h3{font-size:1.2rem;font-weight:600}
+p{color:var(--muted);margin:0 0 1rem;max-width:68ch}
+
+/* ===== estructura ===== */
+.shell{display:grid;grid-template-columns:var(--rail) 1fr;min-height:100vh}
+.rail{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:2rem 1.4rem;
+  background:var(--card);border-right:1px solid var(--line)}
+.brand{border:0;background:none;text-align:left;color:var(--ink);padding:0 0 1.6rem;margin-bottom:1rem;border-bottom:1px solid var(--line)}
+.brand strong{display:block;font:700 1.6rem var(--serif);color:var(--orange)}
+.brand small{color:var(--muted);font-size:.85rem}
+.main-menu{display:flex;flex-direction:column;gap:.1rem}
+.main-menu button{border:0;background:none;color:var(--muted);text-align:left;padding:.6rem .8rem;
+  border-left:3px solid transparent}
+.main-menu button:hover{color:var(--ink)}
+.main-menu button.active{color:var(--ink);border-left-color:var(--orange);background:var(--card2);font-weight:600}
+.rail-foot{margin-top:auto;font-size:.8rem;color:var(--muted)}
+.rail-foot p{font-size:.8rem;margin:.8rem 0 0}
+.theme-btn{border:1px solid var(--line);background:none;color:var(--ink);padding:.5rem .8rem;border-radius:4px;width:100%}
+.theme-btn:hover{border-color:var(--cyan)}
+.content{min-width:0;display:flex;flex-direction:column}
+main{flex:1}
+.view{display:none;padding:3.5rem 5vw 4rem;max-width:1080px;width:100%;animation:fade .25s ease}
+.view.active-view{display:block}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.head{border-bottom:2px solid var(--ink);padding-bottom:1.2rem;margin-bottom:2.2rem}
+.head p{margin:0}
+.meta{color:var(--cyan);font-size:.9rem;margin-bottom:1rem}
+.foot{padding:1.4rem 5vw;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+
+/* ===== botones ===== */
+.btn{border:1px solid transparent;border-radius:4px;padding:.8rem 1.4rem;font-weight:600;min-height:48px}
+.btn.primary{background:var(--orange);color:#17100a}
+.btn.primary:hover{filter:brightness(1.1)}
+.btn.secondary{background:none;border-color:var(--line);color:var(--ink)}
+.btn.secondary:hover{border-color:var(--cyan)}
+.row{display:flex;gap:.8rem;flex-wrap:wrap;margin:1.6rem 0}
+
+/* ===== figuras y láminas ===== */
+figure{margin:2rem 0;padding:1.4rem;background:#060a14;border:1px solid var(--line)}
+[data-theme="light"] figure{background:var(--card)}
+figure svg{width:100%;display:block}
+figcaption{margin-top:.8rem;padding-top:.6rem;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+.plate{border:1px solid var(--line);background:var(--card);padding:1.6rem;margin-bottom:2rem}
+.plate>header{border-bottom:1px solid var(--line);margin-bottom:1.3rem}
+.plate>header p{margin-bottom:.8rem}
+.note{border-left:3px solid var(--cyan);padding:.2rem 0 .2rem 1rem;margin:0}
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;margin:2.5rem 0}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.cols3 h3,.two h3{color:var(--ink)}
+.committee{list-style:none;margin:0;padding:0}
+.committee li{padding:.65rem 0;border-bottom:1px solid var(--line)}
+.toc{list-style:none;margin:1rem 0 0;padding:0;counter-reset:s}
+.toc li{counter-increment:s;border-bottom:1px solid var(--line)}
+.toc button{display:grid;grid-template-columns:2.2rem 9rem 1fr;gap:.5rem;width:100%;text-align:left;
+  border:0;background:none;color:var(--ink);padding:.9rem 0}
+.toc button::before{content:counter(s) ".";color:var(--orange);font-family:var(--serif)}
+.toc button:hover span{color:var(--cyan)}
+.toc em{font-style:normal;color:var(--muted)}
+
+/* ===== neurona (SVG) ===== */
+.glow{fill:none;stroke:var(--cyan);stroke-width:5;stroke-linecap:round}
+.h-soma{fill:var(--soma);stroke:var(--cyan);stroke-width:4}
+.h-nuc{fill:var(--purple)}
+.h-my{fill:var(--orange)}
+.h-dot{fill:var(--cyan)}
+.impulse{fill:var(--orange);filter:drop-shadow(0 0 6px var(--orange))}
+.part{cursor:pointer}
+.part:hover,.part.active{filter:drop-shadow(0 0 8px var(--orange))}
+.line{fill:none;stroke:var(--cyan);stroke-width:4;stroke-linecap:round}
+.line.thick{stroke-width:7}
+.part circle,.fill circle{fill:var(--cyan)}
+.part .soma,.fill .soma{fill:var(--soma);stroke:var(--cyan);stroke-width:3}
+.part .nuc,.fill .nuc{fill:var(--purple)}
+.part .myel,.fill .myel{fill:var(--orange)}
+.explorer{display:grid;grid-template-columns:1.6fr 1fr;gap:2rem;align-items:start}
+.explorer figure{margin:0}
+.info{border:1px solid var(--line);border-top:3px solid var(--orange);background:var(--card);padding:1.3rem}
+.info h3{margin-top:0}.info p:last-child{margin:0}
+.care{border-top:2px solid var(--ink);margin-top:3rem;padding-top:1.4rem}
+.care>div{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.care ul{margin:0;padding-left:1.1rem;color:var(--muted)}
+
+/* ===== laboratorio ===== */
+.lab-content{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;align-items:center}
+canvas{width:100%;height:auto;background:#050913;border:1px solid var(--line)}
+[data-theme="light"] canvas{background:var(--card2)}
+.controls{display:grid;gap:1rem}
+.controls output{color:var(--orange);font-weight:600}
+.controls input{width:100%;accent-color:var(--orange)}
+.status{min-height:3em;color:var(--orange);margin:0}
+.phases{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}
+.phases li{padding:1rem;border-right:1px solid var(--line);display:flex;flex-direction:column}
+.phases li:last-child{border-right:0}
+.phases b{font:600 1.2rem var(--serif);color:var(--orange)}
+.phases small{color:var(--muted)}
+#synSvg{max-width:850px;margin:1.5rem auto}
+.pre{fill:var(--soma)}.post{fill:var(--post)}
+#vesicles circle,#nts circle{fill:var(--orange);transition:.8s}
+#receptors rect{fill:var(--muted);transition:.4s}
+#receptors.on rect{fill:var(--green)}
+.tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:1rem}
+.tabs button{border:0;background:none;color:var(--muted);padding:.6rem 1rem;border-bottom:3px solid transparent}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--cyan);font-weight:600}
+
+/* ===== juego: Construye la Neurona ===== */
+.hud{display:flex;border:1px solid var(--line);background:var(--card);margin-bottom:1rem}
+.hud div{flex:1;padding:.7rem 1rem;border-right:1px solid var(--line)}
+.hud div:last-child{border-right:0}
+.hud span{display:block;font-size:.8rem;color:var(--muted)}
+.hud strong{font:700 1.7rem var(--serif);color:var(--orange)}
+#gameBoardWrap{background:#060a14;border:1px solid var(--cyan);padding:1rem;box-shadow:0 0 40px #4fd1ff1a}
+[data-theme="light"] #gameBoardWrap{background:var(--card)}
+#gameBoard{width:100%;display:block;touch-action:manipulation}
+.ghost *{fill:none;stroke:var(--muted);stroke-width:2;stroke-dasharray:5 5;opacity:.75}
+.fill{opacity:0}
+.put .fill{opacity:1;transform-box:fill-box;transform-origin:center;animation:pop .6s ease}
+.put .ghost{opacity:0}
+@keyframes pop{0%{transform:scale(.5);filter:drop-shadow(0 0 0 var(--orange))}
+  55%{transform:scale(1.1);filter:drop-shadow(0 0 14px var(--orange))}100%{transform:scale(1)}}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.tray{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:1rem 0}
+.piece{min-height:58px;display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;border:1px solid var(--line);
+  border-radius:4px;background:var(--card);color:var(--ink);font-weight:600;touch-action:none;user-select:none;cursor:grab}
+.piece i{width:14px;height:14px;border-radius:50%;background:var(--c);flex:none}
+.piece:hover,.piece.sel{border-color:var(--orange)}
+.piece.lift{opacity:.4}
+.piece.used{opacity:.35;pointer-events:none;text-decoration:line-through}
+.piece.float{position:fixed;z-index:300;pointer-events:none;box-shadow:0 10px 30px #0008;border-color:var(--orange)}
+.piece.float.back{transition:left .3s,top .3s}
+.gmsg{min-height:2rem;font-weight:600;color:var(--cyan);margin:0 0 1rem}
+.end{position:fixed;inset:0;z-index:400;display:grid;place-items:center;padding:1rem;background:#000b}
+.end-box{max-width:560px;max-height:92vh;overflow:auto;background:var(--card);border:1px solid var(--cyan);border-top:4px solid var(--orange);padding:2rem;animation:fade .3s}
+.end-box strong{color:var(--orange)}
+
+/* ===== evaluación ===== */
+.form-wrap{border:1px solid var(--line);background:var(--card);padding:1rem}
+.form-wrap iframe{width:100%;height:1400px;border:0;display:block;background:#fff}
+.form-wrap ol{color:var(--muted);padding-left:1.2rem}
+
+/* ===== glosario ===== */
+.search{max-width:520px;display:block;margin-bottom:2rem}
+.search input{width:100%;border:0;border-bottom:2px solid var(--line);background:none;color:var(--ink);padding:.7rem 0;outline:0}
+.search input:focus{border-bottom-color:var(--cyan)}
+.glossary{display:grid;grid-template-columns:1fr 1fr;column-gap:3rem;margin:0}
+.glossary div{padding:1rem 0;border-bottom:1px solid var(--line)}
+.glossary dt{font:600 1.1rem var(--serif);color:var(--cyan)}
+.glossary dd{margin:.2rem 0 0;color:var(--muted)}
+
+/* ===== responsive ===== */
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .rail{position:sticky;z-index:100;height:auto;flex-direction:row;align-items:center;gap:.8rem;padding:.6rem 1rem;border-right:0;border-bottom:1px solid var(--line)}
+  .brand{padding:0;margin:0;border:0}.brand small{display:none}
+  .main-menu{flex-direction:row;overflow-x:auto;flex:1}
+  .main-menu button{white-space:nowrap;border-left:0;border-bottom:3px solid transparent;padding:.5rem .7rem}
+  .main-menu button.active{border-bottom-color:var(--orange)}
+  .rail-foot{margin:0}.rail-foot p{display:none}.theme-btn{width:auto;white-space:nowrap}
+  .two,.explorer,.care>div,.cols3,.lab-content,.glossary{grid-template-columns:1fr}
+  .phases{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .view{padding:2rem 1rem 3rem}
+  .tray{grid-template-columns:1fr 1fr}
+  .hud strong{font-size:1.3rem}.hud div{padding:.5rem .6rem}
+  .toc button{grid-template-columns:2rem 1fr}.toc em{grid-column:2}
+  .plate{padding:1rem}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition:none!important}}
+
+/* =====================================================================
+   CAPA 2 · REDISEÑO "NEURAL GLASS"
+   Paleta suave (azul, cian pastel, violeta, turquesa), vidrio esmerilado,
+   navegación flotante y brillos sutiles. Sobrescribe la capa anterior.
+   ===================================================================== */
+:root{
+  --bg:#0a0f1d;--card:rgba(20,29,52,.62);--card2:rgba(34,46,78,.55);--ink:#e7edf9;--muted:#a1aec8;
+  --cyan:#86d3e4;--blue:#8aa4f2;--purple:#a99bee;--orange:#9fe3d6;--green:#8fdcb0;--red:#f09393;
+  --line:#9fb4e61f;--grid:transparent;--soma:#233a66;--post:#3b3470;
+  --serif:'Sora',system-ui,sans-serif;--sans:'Figtree',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+[data-theme="light"]{--bg:#eef2fa;--card:rgba(255,255,255,.74);--card2:rgba(226,234,249,.85);--ink:#1c2542;--muted:#566280;
+  --cyan:#23849f;--blue:#4a63c9;--purple:#6c59c2;--orange:#1b8a80;--green:#17855a;--red:#c04848;--line:#2a3a7a24;--soma:#cddcf5;--post:#d8d1f2}
+body{background:radial-gradient(900px 520px at 12% -8%,#2b3a7a55,transparent 62%),radial-gradient(800px 520px at 100% 18%,#4a3a8a3d,transparent 62%),var(--bg);background-attachment:fixed}
+[data-theme="light"] body{background:radial-gradient(900px 520px at 12% -8%,#bcd0f59a,transparent 62%),radial-gradient(800px 520px at 100% 18%,#d7ccf58a,transparent 62%),var(--bg)}
+#bgNet{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.5;background:none;border-radius:0}
+.shell,.foot{position:relative;z-index:1}
+.shell{display:block}
+
+/* Navegación flotante tipo cápsula de vidrio */
+.rail{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:100;width:min(960px,calc(100% - 20px));height:auto;
+  flex-direction:row;align-items:center;gap:1rem;padding:.45rem .55rem .45rem 1.2rem;border:1px solid var(--line);border-radius:99px;
+  background:var(--card);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 12px 40px #0004}
+.brand{padding:0;margin:0;border:0}.brand small{display:none}
+.brand strong{font-size:1.1rem;color:var(--ink);display:flex;align-items:center;gap:.5rem}
+.brand strong::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 10px var(--orange);animation:beat 2.4s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.5);opacity:.6}}
+.main-menu{flex-direction:row;margin:0 auto;gap:.15rem;overflow-x:auto}
+.main-menu button{border:0;border-radius:99px;padding:.45rem .9rem;white-space:nowrap;transition:.3s var(--ease)}
+.main-menu button:hover{background:var(--card2)}
+.main-menu button.active{background:linear-gradient(135deg,#8aa4f238,#86d3e438);box-shadow:inset 0 0 0 1px var(--line)}
+.rail-foot{margin:0}.rail-foot p{display:none}
+.theme-btn{width:auto;border-radius:99px;padding:.45rem 1rem;white-space:nowrap;transition:.3s var(--ease)}
+
+/* Vistas con transición suave */
+.view{max-width:1120px;margin:0 auto;padding:7.5rem 5vw 4rem;animation:viewIn .7s var(--ease)}
+@keyframes viewIn{from{opacity:0;transform:translateY(18px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+#inicio{position:relative;overflow-x:clip}
+#inicio::before{content:"NEURO";position:absolute;top:5rem;right:-1vw;z-index:-1;font:700 clamp(6rem,21vw,16rem)/1 var(--serif);
+  color:transparent;-webkit-text-stroke:1px var(--line);pointer-events:none;user-select:none}
+h1{font-size:clamp(2.5rem,6.6vw,5rem);max-width:15ch;background:linear-gradient(120deg,var(--ink) 30%,var(--cyan) 70%,var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.head{border-bottom:1px solid var(--line)}
+.head h2{font-size:clamp(1.8rem,4vw,2.7rem)}
+.meta{color:var(--cyan);font-weight:600}
+
+/* Botones */
+.btn{border-radius:99px;transition:transform .35s var(--ease),box-shadow .35s,filter .35s,border-color .3s;padding:.8rem 1.6rem}
+.btn.primary{background:linear-gradient(135deg,#9fe3d6,#86d3e4 50%,#a99bee);color:#0b1426;box-shadow:0 6px 24px #86d3e42e}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px #a99bee4d;filter:none}
+.btn.secondary{background:var(--card);backdrop-filter:blur(10px)}
+.btn.secondary:hover{transform:translateY(-2px);box-shadow:0 8px 26px #86d3e41f}
+.btn:active{transform:scale(.97)}
+
+/* Superficies de vidrio */
+figure,.plate,.info,.hud,.form-wrap,.end-box,.cols3>div,.care>div>div,.toc li,.glossary>div{
+  border:1px solid var(--line);border-radius:20px;background-color:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+figure{background-color:rgba(7,12,26,.55)}
+[data-theme="light"] figure{background-color:var(--card)}
+.info{box-shadow:inset 3px 0 0 var(--orange)}
+.plate>header,.care{border-color:var(--line)}
+.cols3{gap:1rem}.cols3>div,.care>div>div{padding:1.5rem}
+.care>div{gap:1rem}.care{border-top:1px solid var(--line)}
+.glossary{gap:1rem;column-gap:1rem}.glossary>div{padding:1.1rem 1.3rem}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.toc li{border-radius:20px;overflow:hidden}
+.toc button{display:flex;flex-direction:column;gap:.3rem;padding:1.3rem;height:100%}
+.cols3>div,.care>div>div,.toc li,.glossary>div,.plate,.info{transition:transform .45s var(--ease),border-color .3s,box-shadow .45s}
+.cols3>div:hover,.care>div>div:hover,.toc li:hover,.glossary>div:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 18px 44px #0004,0 0 0 1px #86d3e422}
+/* Foco de luz que sigue al cursor (variables --mx/--my desde effects.js) */
+.plate:hover,.info:hover,.cols3>div:hover,.care>div>div:hover,.toc li:hover,.glossary>div:hover{
+  background-image:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),#86d3e416,transparent 65%)}
+.phases{border-radius:16px;overflow:hidden;background:var(--card2)}
+.tabs{border:0;gap:.4rem}
+.tabs button{border:1px solid var(--line);border-radius:99px;transition:.3s var(--ease)}
+.tabs button:hover{border-color:var(--cyan)}
+.tabs button[aria-selected="true"]{background:linear-gradient(135deg,#8aa4f23d,#86d3e43d);border-color:var(--cyan)}
+
+/* Neurona SVG: tonos suaves y brillo sutil */
+.glow,.line{filter:drop-shadow(0 0 4px #86d3e455)}
+.h-soma{animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{50%{filter:drop-shadow(0 0 12px #86d3e466)}}
+.h-my,.part .myel,.fill .myel{fill:var(--purple);opacity:.85}
+.h-nuc,.part .nuc,.fill .nuc{fill:var(--blue)}
+.impulse{fill:#eafffb;filter:drop-shadow(0 0 8px var(--orange))}
+canvas{background:#070c1a;border-radius:14px}
+[data-theme="light"] canvas{background:var(--card2)}
+#gameBoardWrap{border-radius:20px;border-color:var(--line);background:rgba(7,12,26,.55);box-shadow:0 0 60px #8aa4f21f}
+.piece{border-radius:14px;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.piece:hover{transform:translateY(-3px);box-shadow:0 8px 22px #86d3e426}
+.hud{overflow:hidden}
+.end{background:#050a18cc;backdrop-filter:blur(6px)}
+.end-box{background-color:#131c34;border-top:1px solid var(--cyan)}
+[data-theme="light"] .end-box{background-color:#fff}
+.form-wrap iframe{border-radius:12px}
+.search input{border:1px solid var(--line);border-radius:99px;padding:.8rem 1.3rem;background:var(--card)}
+.foot{border-top:1px solid var(--line)}
+
+/* Visor 3D */
+.viz3d{padding:0;position:relative;overflow:hidden;height:min(62vh,520px);background:radial-gradient(circle at 50% 45%,#22327280,#070c1a 72%)}
+[data-theme="light"] .viz3d{background:radial-gradient(circle at 50% 45%,#c9d8f8,#eef2fa 75%)}
+#neuro3d{position:absolute;inset:0;touch-action:pan-y;cursor:grab}
+#neuro3d:active{cursor:grabbing}
+.viz3d canvas{width:100%;height:100%;display:block;border:0;border-radius:0;background:transparent}
+.viz3d figcaption{position:absolute;left:1.2rem;right:1.2rem;bottom:.7rem;margin:0;padding:0;border:0;pointer-events:none}
+
+/* Aparición al hacer scroll (la clase .reveal la añade effects.js) */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:900px){.rail{width:calc(100% - 16px);top:8px}.view{padding-top:8rem}}
+@media(max-width:700px){
+  .rail{border-radius:24px;flex-wrap:wrap;padding:.5rem .7rem;gap:.4rem}
+  .main-menu{order:3;flex:0 0 100%;margin:0}
+  .brand{flex:1}.view{padding-top:9.5rem}
+  .viz3d{height:56vh}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
